@@ -1,0 +1,438 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    
+}
+
+
+body {
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #bdf1f8;
+
+
+
+}
+
+/* INICIO - Estilos para el encabezado */
+
+
+.encabezado {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 1300px;
+    width: 100%;
+    background-color: #ffff;
+    height: 120px;
+    border-radius: 6px;
+    margin: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.menu {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+nav {
+    float: rights;
+}
+
+        /*  Estilos a los links */
+nav ul {
+    display: flex;
+    list-style: none;
+    
+    gap: 6px;
+    margin-right: 30px;
+}
+
+nav ul li {
+    margin: 0 2px;
+    
+}
+
+nav ul li a {
+    color: #212526;
+    font-weight: 600;
+    padding: 8px 18px;
+    transition: 0.2s;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+nav ul li a:hover {
+    background: #f6f4ff;
+}
+
+nav ul li a.active {
+    background: #f6f4ff;
+}
+
+
+        /*  Estilos al logo*/
+.logo {
+    margin-left: 20px;
+}
+
+img {
+    width: 80px;
+    border-radius: 5px;
+    
+}
+
+
+/* **** FINAL - Estilos para el encabezado **** */
+
+
+
+
+/*  **** INICIO - Ajustes y estilos al contenido **** */
+
+.container {
+    position: relative;
+    max-width: 1300px;
+    width: 100%;
+    background-color: #ffff;
+
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 15px;
+
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.container .btn-volver a{
+    
+    color: #212526;
+    font-weight: 600;
+    padding: 8px 18px;
+    transition: 0.2s;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 20px;
+    
+}
+
+.container .btn-volver a.active {
+    background: #f6f4ff;
+}
+
+
+
+
+.container form {
+    position: relative;
+    margin-top: 16px;
+    min-height: 490px;
+    background-color: #fff;
+    
+}
+
+.container form .details {
+    margin-top: 30px;
+
+}
+
+.container form details.ID {
+    margin-top: 30px;
+
+}
+
+
+.container form .title {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 6px 0;
+    color: #333;
+
+}
+
+    /* Estilos a los DIV que tiene los Labes e Inputs */
+
+.container form .fields {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+
+form .fields .input-field {
+    display: flex;
+    width: calc(100% / 3 - 10px);
+    
+    flex-direction: column;
+
+    margin: 4px;
+    
+}
+
+.input-field {
+    margin-bottom: 20px;
+}
+
+.sugerencia {
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 2px;
+}
+
+.input-field select {
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 42px;
+    margin: 8px 0;
+} 
+
+
+    /* Estilos a los Inputs y Labels */
+
+.input-field label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #2e2e2e;
+}
+
+.input-field input {
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 42px;
+    margin: 8px 0;
+} 
+
+
+
+.input-field input:is(:focus, :valid){
+    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+}
+
+
+.input-field input[type="date"] {
+    color: #707070;
+}
+
+.input-field input[type="date"]:valid {
+    color: #333;
+}
+
+
+
+    /* Estilos al boton */
+
+.container .btn-green {
+        background-color: #009431bf;
+        color: white;
+    
+        padding: 0 6px;
+        height: 42px;
+        width: 120px;
+        border-radius: 6px;
+        border: none;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+        
+    }
+.container .btn-green:hover {
+    background-color: #22970d;
+    color: black;
+}
+    
+.form button i {
+margin: 0 6px;
+        
+    }
+
+
+
+
+
+
+
+
+/*  **** INICIO - Contenido de la tabla **** */
+
+.tabular--wrapper .title{
+    position: relative;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.tabular--wrapper .title::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 3px;
+    width: 35px;
+    margin-bottom: 2px;
+    
+
+    border-radius: 8px;
+    background-color: #22970d;
+}
+
+.tabular--wrapper {
+    position: relative;
+    max-width: 1200px;
+    width: 100%;
+    background-color: #ffff;
+
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 15px;
+    margin-top: 10px;
+
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+}
+
+
+.table-container {
+    width: 100%;
+    margin-top: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #4DCEC7;
+    color: #fff;    
+}
+
+th {
+    padding: 15px;
+    text-align: left ;
+}
+
+tbody {
+    background: #f2f2f2;
+}
+
+td {
+    padding: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.btn-tabla {
+    text-decoration: none;
+    color: rgb(40, 136, 3);
+    border: none;
+    font-size: 14px;
+}
+
+tr:nth-child(even){
+    background: #fff;
+}
+
+
+
+
+/* **** Footer **** */
+
+
+.pie-pagina {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 1300px;
+    width: 100%;
+    background-color: white;
+    height: 60px;
+    border-radius: 6px;
+    margin: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.pie {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+nav .nav-right {
+    float: rights;
+}
+
+nav .nav-izq {
+    float: left;
+    margin-left:  10px;
+}
+        
+    /*  Estilos a los links */
+nav ul {
+    display: flex;
+    list-style: none;
+    
+    gap: 6px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+
+
+nav ul li {
+    margin: 0 2px;
+    
+}
+
+nav ul li a {
+    color: #494e50;
+    font-weight: 200;
+    padding: 8px 18px;
+    transition: 0.2s;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+
+
+nav ul li a.active {
+    background: #f6f4ff;
+}

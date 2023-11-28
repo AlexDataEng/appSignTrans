@@ -1,0 +1,125 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{% static 'appInforme/css/css-inicio.css' %}">
+</head>
+<body>
+    
+    <header class="encabezado">
+        <div class="menu">
+            
+            <div class="logo">
+                <img src={% static 'appInforme/img/logo_transparent.png' %} alt="">
+            </div>
+
+            <nav>
+                <ul>
+                    <li>
+                        <a href="" class="active">Inicio</a>
+                    </li>
+                    <li>
+                        <a href={% url 'inicioInforme' %}>Informes</a>
+                    </li>
+
+                    <li>
+                        <a href="">Usuarios</a>
+                    </li>
+
+                    <li>
+                        <a href={% url 'login' %}>Iniciar Sesion </a>
+                    </li>
+                    <li>
+                        <span>|</span>
+                    </li>
+                    <li>
+                        <a href="">@Usuario </a>
+                    </li>
+                   
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="container-sect">
+        
+        <header>Esto podrás realizar en cada módulo:</header>
+
+        <div class="container">
+        
+            <div class="card">
+
+                <div class="box-card">
+                    <div class="box-left"></div>
+                    <div class="box-right">
+                        <h2>Informes</h2>
+                        <p>Podrás emitir, buscar, firmar y anular informes</p>
+                        <a href={% url 'inicioInforme' %}>Ir</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+
+                <div class="box-card">
+                    <div class="box-left"></div>
+                    <div class="box-right">
+                        <h2>Administacion</h2>
+                        <p>Podrás administrar las bases de datos.</p>
+                        <a href="">Ir</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+
+                <div class="box-card">
+                    <div class="box-left"></div>
+                    <div class="box-right">
+                        <h2>Usuarios</h2>
+                        <p>Podrás crear, actualizar y eliminar usuarios.</p>
+                        <a href="">Ir</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        
+        
+    </section>
+
+    <div class="pie-pagina">
+        <div class="pie">
+
+            <nav class="nav-right">
+                <ul class="ul-pie">
+                    <li>
+                        <span>©Copyright SignAppFast </span>
+                      
+                        <span> |</span>
+                        <a href="">Documentación SignAppFast
+                        </a>
+                    </li>
+                   
+                </ul>
+            </nav>
+
+            <nav class="nav-izq">
+                <ul class="ul-pie">
+                
+                    <li>
+                        <a href="">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>

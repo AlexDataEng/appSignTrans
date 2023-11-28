@@ -1,0 +1,184 @@
+
+{% load static %}
+appInicio
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'appInforme/css/css-busca-informe.css' %}">
+    <title>Lista de usuarios</title>
+</head>
+<body>
+
+    <header class="encabezado">
+        <div class="menu">
+            
+            <div class="logo">
+                <img src="{% static 'appInforme/img/logo_transparent.png' %}" alt="">
+            </div>
+
+            <nav>
+                <ul>
+                    <li>
+                        <a href={% url 'inicio' %}  >Inicio</a>
+                    </li>
+                    <li>
+                        <a href={% url 'inicioInforme' %} class="active">Informes</a>
+                    </li>
+                    <li>
+                        <a href="" >Usuarios</a>
+                    </li>
+                    <li>
+                        <a href={% url 'login' %}>Iniciar Sesion </a>
+                    </li>
+                    <li>
+                        <span>|</span>
+                    </li>
+                    <li>
+                        <a href="">@Usuario </a>
+                    </li>
+                </ul>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    
+    <section class="container">
+        
+        <div class="btn-volver">
+            
+            <a href={% url 'inicioInforme' %} class="active">Volver</a>
+
+        </div>
+
+        <form action="">
+            <div class="from first">
+                <div class="details personal">
+                    <span class="title"><strong>Buscar informe</strong></span>
+        
+                    <div class="fields">
+                        <div class="input-field">
+                            <label for="buscarPor">Buscar por:</label>
+                            <select name="buscarPor" id="buscarPor">
+                                <option value="informe">Informe</option>
+                                <option value="factura">Factura</option>
+                                <option value="ordenRetiro">Orden Retiro</option>
+                            </select>
+                        </div>
+        
+                        <div class="input-field">
+                            <label>Ingrese Nº</label>
+                            <input type="number" id="numeroBusqueda" placeholder="Ingrese el Nº">
+                        </div>
+        
+                        <div class="botones">
+                            <button type="button" class="nextBtn btn-green" onclick="buscarInformes()">
+                                <span class="btnText">Buscar</span>
+                                <i class="uil uil-navigator"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <section class="tabular--wrapper">
+                <h3 class="title"><strong> Resultado de busqueda </strong></h3>
+        
+                <div class="table-container">
+                    <table id="tablaResultados">
+                        <thead>
+                            <tr>
+                                <th>N° infome</th>
+                                <th>N° factura</th>
+                                <th>Orden Retiro</th>
+                                <th>Cliente</th>
+                                <th>Estado</th>
+                                <th>Firma Calidad</th>
+                                <th>Firma Selección</th>
+                                <th>Firma Despacho</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Las filas se llenarán dinámicamente al buscar -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </form>
+        
+        <script>
+            // Datos ficticios para llenar las filas automáticamente
+            var datosFicticios = [
+                { informe: "29301", factura: "588601", ordenRetiro: "8976", cliente: "Alejandro", estado: "Valida", firmaCalidad: "Claudia", firmaSeleccion: "null", firmaDespacho: "null" },
+                { informe: "29302", factura: "588602", ordenRetiro: "8977", cliente: "Felipe", estado: "Nulo", firmaCalidad: "Claudia", firmaSeleccion: "null", firmaDespacho: "null" },
+                { informe: "29303", factura: "588603", ordenRetiro: "8978", cliente: "Mirla", estado: "Valida", firmaCalidad: "firmado", firmaSeleccion: "null", firmaDespacho: "Alejandro" }
+            ];
+        
+            // Función para llenar la tabla con datos ficticios
+            function llenarTablaConDatosFicticios(datos) {
+                var tablaResultados = document.getElementById("tablaResultados").getElementsByTagName('tbody')[0];
+        
+                // Limpiar la tabla
+                tablaResultados.innerHTML = "";
+        
+                // Llenar la tabla con datos ficticios
+                datos.forEach(function (dato) {
+                    var fila = document.createElement("tr");
+                    for (var key in dato) {
+                        var celda = document.createElement("td");
+                        celda.textContent = dato[key];
+                        fila.appendChild(celda);
+                    }
+                    tablaResultados.appendChild(fila);
+                });
+            }
+        
+            // Función para buscar informes
+            function buscarInformes() {
+                var buscarPor = document.getElementById("buscarPor").value;
+                var numeroBusqueda = document.getElementById("numeroBusqueda").value;
+        
+                // Filtrar los datos ficticios según la búsqueda
+                var datosFiltrados = datosFicticios.filter(function (dato) {
+                    return dato.informe === numeroBusqueda || dato.factura === numeroBusqueda || dato.ordenRetiro === numeroBusqueda;
+                });
+        
+                // Llenar la tabla con los datos filtrados
+                llenarTablaConDatosFicticios(datosFiltrados);
+            }
+        </script>
+    
+
+    </section>  
+
+    <div class="pie-pagina">
+        <div class="pie">
+
+            <nav class="nav-right">
+                <ul class="ul-pie">
+                    <li>
+                        <span>©Copyright SignAppFast </span>
+                        <span> |</span>
+                        <a href="">Documentación SignAppFast
+                        </a>
+                    </li>
+                   
+                </ul>
+            </nav>
+
+            <nav class="nav-izq">
+                <ul class="ul-pie">
+                
+                    <li>
+                        <a href="">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    
+
+</body>
+</html>

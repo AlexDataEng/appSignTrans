@@ -1,0 +1,155 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio Informe</title>
+    <link rel="stylesheet" href="{% static 'appInforme/css/ccs-inicio-informe.css' %}">
+</head>
+<body>
+    
+    <header class="encabezado">
+        <div class="menu">
+            
+            <div class="logo">
+                <img src="{% static 'appInforme/img/logo_transparent.png' %}" alt="">
+            </div>
+
+            <nav>
+                <ul>
+                    <li>
+                        <a href={% url 'inicio' %}  >Inicio</a>
+                    </li>
+                    <li>
+                        <a href={% url 'inicioInforme' %} class="active">Informes</a>
+                    </li>
+                    <li>
+                        <a href="">Usuarios</a>
+                    </li>
+                    <li>
+                        <a href={% url 'login' %}>Iniciar Sesion </a>
+                    </li>
+                    <li>
+                        <span>|</span>
+                    </li>
+                    <li>
+                        <a href="">@Usuario </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="container-sect">
+        
+        <header>
+            <h1>Bienvenido al módulo Informe</h1>
+            <p>Esto prodrás hacer en este modulo:</p>
+         </header>
+
+        <div class="container">
+        
+            <div class="card">
+
+                <div class="box-card">
+                    <div class="box-left"></div>
+                    <div class="box-right">
+                        <h2>Emitir Informes</h2>
+                        
+                    
+                        <a href={% url 'emitir' %}>Ir</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="card">
+
+                <div class="box-card">
+                    <div class="box-left"></div>
+                    <div class="box-right">
+                        <h2>Actualizar Informe</h2>
+                    
+                        <a href={% url 'actualizar_informe' %}>Ir</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+
+                <div class="box-card">
+                    <div class="box-left"></div>
+                    <div class="box-right">
+                        <h2>Firmar Informe</h2>
+                    
+                        <a href={% url 'firmaInforme' %}>Ir</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+
+                <div class="box-card">
+                    <div class="box-left"></div>
+                    <div class="box-right">
+                        <h2>Anular Informe</h2>
+                    
+                        <a href={% url 'anularInforme' %}>Ir</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+
+                <div class="box-card">
+                    <div class="box-left"></div>
+                    <div class="box-right">
+                        <h2>Buscar informes</h2>
+                    
+                        <a href={% url 'buscarInforme' %}>Ir</a>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+
+        
+        
+    </section>
+
+    <div class="pie-pagina">
+        <div class="pie">
+
+            <nav class="nav-right">
+                <ul class="ul-pie">
+                    <li>
+                        <a href="">©Copyright SignAppFast
+                        </a>
+                        <span>|</span>
+                        <a href="">Documentación SignAppFast
+                        </a>
+                    </li>
+                   
+                </ul>
+            </nav>
+
+            <nav class="nav-izq">
+                <ul class="ul-pie">
+                
+                    <li>
+                        <a href="">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>

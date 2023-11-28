@@ -1,0 +1,569 @@
+
+{% load static %}
+appInicio
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'appInforme/css/css-emitir-informe.css' %}">
+    <title>Emitir Informe</title>
+</head>
+<body>
+
+    <header class="encabezado">
+        <div class="menu">
+            
+            <div class="logo">
+                <img src="{% static 'appInforme/img/logo_transparent.png' %}" alt="">
+            </div>
+
+            <nav>
+                <ul>
+                    <li>
+                        <a href={% url 'inicio' %}  >Inicio</a>
+                    </li>
+                    <li>
+                        <a href={% url 'inicioInforme' %} class="active">Informes</a>
+                    </li>
+                    <li>
+                        <a href="">Usuarios</a>
+                    </li>
+                    <li>
+                        <a href={% url 'login' %}>Iniciar Sesion </a>
+                    </li>
+                    <li>
+                        <span>|</span>
+                    </li>
+                    <li>
+                        <a href="">@Usuario </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    
+    <section class="container">
+        
+        <header>Datos Informes</header>
+
+        <form method="post" action="{% url 'guardar_informacion' %}"> {% csrf_token %}
+            <div class="from first">
+
+                <div class="Datos Devolucion">
+                    <span class="title" ><strong> Detalles Devolución </strong> </span>
+
+                    <div class="fields">
+                        
+                        <div class="input-field">
+                            <label>Fecha Recepción</label>
+                            <input name="fechaRecepcion" type="date" placeholder="Ingrese fecha">                           
+                        </div>
+
+                        <div class="input-field">
+                            <label for="tipoDevolucion">Tipo devolución</label>
+                            <select id="tipoDevolucion" name="tipoDevolucion">
+                                <option name="null" value="Seleccione">Seleccione</option>
+                                <option name="Devolucion_con_O-R" value="Devolucion con O.R">Dev. mercadería con O.R</option>
+                                <option name="Devolucion_sin_O-R" value="Devolucion sin O.R">Dev. Mercadería sin O.R</option>
+                                <option name="No_cargado" value="No cargado">No cargado</option>
+                                <option name="Factura_nula" value="Factura nula">Factura nula</option>
+                                <option name="Sin_stock" value="Sin stock">Sin stock</option>
+                                <option name="No_despachado" value="No_despachado">No despachado</option>
+                                <option name="Otro" value="Otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="listaAnulacion">Anulación Solicitada Por:</label>
+                            <select name="listaAnulacion" id="listaAnulacion">
+                                <option value="null">Anulada Por:</option>
+                                {% for usuario in usuarios_anulacion %}
+                                    <option value="{{ usuario.nombre_usuario_anula }}">{{ usuario.nombre_usuario_anula }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="categoriaMotivo">Categoría De Motivo:</label>
+                            <select name="categoriaMotivo" id="categoriaMotivo">
+                                <option value="null">Seleccionar</option>
+                                <option value="SIN STOCK">SIN STOCK</option>
+                                <option value="VENCIMIENTO">VENCIMIENTO</option>
+                                <option value="VIDA UTIL">VIDA UTIL</option>
+                                <option value="CONTAMINADO">CONTAMINADO</option>
+                                <option value="MAL ESTADO">MAL ESTADO</option>
+                                <option value="ERROR ETIQUETA">ERROR ETIQUETA</option>
+                                <option value="DIFERENCIA DE PESO">DIFERENCIA DE PESO</option>
+                                <option value="ERROR DE VENTA">ERROR DE VENTA</option>
+                                <option value="ERROR DESPACHO">ERROR DESPACHO</option>
+                                <option value="ERROR ENTREGA">ERROR ENTREGA</option>
+                                <option value="NO ENCONTRADO">NO ENCONTRADO</option>
+                                <option value="CLIENTE INCONFORME">CLIENTE INCONFORME</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label>Motivo Devolución</label>
+                            <input name="motivo_devolucion" type="text" placeholder="Ingrese motivo">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Dev. Envase IC (Si/No/Otro)</label>
+                            <input name="dev_envase_ic" type="text" placeholder="Comente">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Recepción Cliente (Si/No) Motivo</label>
+                            <input name="recepcion_cliente" type="text" placeholder="Cliente recibe">
+                        </div>
+                        
+                        <div class="input-field">
+                            <label>Nº Orden Retiro</label>
+                            <input name="orden_de_retiro" type="number" placeholder="Nº Orden de retiro">
+                        </div>
+
+                        <div class="input-field">
+                            
+                            <label for="requiereNC">NC (Si/No)</label>
+                            <select name="requiere_NC" id="requiereNC">
+                                <option value="null">null</option>
+                                <option value="si">Si</option>
+                                <option value="no">No</option>
+                            </select>
+
+                        </div>
+
+                        <div class="input-field">
+                            <label>Observación</label>
+                            <textarea name="observacion"  cols="5" rows="4"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="Datos Facturacion">
+                    <span class="title"> <strong> Datos Facturación </strong></span>
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>RUT Cliente *</label>
+                            <input name="rut_cliente" type="text" id="rutInput" placeholder="RUT del cliente" required>
+                            <div id="sugerenciasRut"></div>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Nombre Cliente *</label>
+                            <input name="nombre_cliente" type="text" id="nombreInput" placeholder="Nombre cliente">
+                            <div id="sugerenciasNombreCliente"></div>
+                        </div>
+                        
+                        
+                        <div class="input-field">
+                            <label>Ciudad *</label>
+                            <input name="ciudad" type="text" id="ciudadInput" placeholder="Ciudad del cliente" required>
+                        </div>
+                        
+                        <div class="input-field">
+                            <label>Comuna *</label>
+                            <input name="comuna" type="text" id="comunaInput" placeholder="Comuna del cliente" required>
+                        </div>
+                        
+                        <script>
+                            // Obtener los elementos del DOM
+                            var rutInput = document.getElementById("rutInput");
+                            var nombreInput = document.getElementById("nombreInput");
+                            var ciudadInput = document.getElementById("ciudadInput");
+                            var comunaInput = document.getElementById("comunaInput");
+                            var sugerenciasRutContainer = document.getElementById("sugerenciasRut");
+                            var sugerenciasNombreContainer = document.getElementById("sugerenciasNombreCliente");
+                        
+                            // Convertir la cadena JSON en un objeto JavaScript
+                            var datosClientes = JSON.parse('{{ datos_clientes_json|safe }}');
+                        
+                            // Manejar el evento de entrada en el campo de RUT
+                            rutInput.addEventListener("input", function () {
+                                var rut = rutInput.value.trim();
+                                // Filtrar los RUTs que coinciden con el valor de entrada
+                                var sugerenciasRut = Object.keys(datosClientes).filter(function (clienteRut) {
+                                    return clienteRut.startsWith(rut);
+                                });
+                                // Mostrar las sugerencias de RUT
+                                mostrarSugerenciasRut(sugerenciasRut);
+                            });
+                        
+                            // Manejar el evento de entrada en el campo de Nombre
+                            nombreInput.addEventListener("input", function () {
+                                var nombre = nombreInput.value.trim();
+                                // Filtrar los nombres que coinciden con el valor de entrada
+                                var sugerenciasNombre = Object.values(datosClientes).filter(function (datosCliente) {
+                                    return datosCliente.nombre_cliente.toLowerCase().includes(nombre.toLowerCase());
+                                });
+                                // Mostrar las sugerencias de Nombre
+                                mostrarSugerenciasNombre(sugerenciasNombre);
+                            });
+                        
+                            // Función para mostrar las sugerencias de RUT en el contenedor
+                            function mostrarSugerenciasRut(sugerenciasRut) {
+                                sugerenciasRutContainer.innerHTML = "";
+                                sugerenciasRut.forEach(function (sugerenciaRut) {
+                                    var sugerenciaRutElemento = document.createElement("div");
+                                    sugerenciaRutElemento.classList.add("sugerencia");
+                                    sugerenciaRutElemento.textContent = sugerenciaRut;
+                                    sugerenciaRutElemento.addEventListener("click", function () {
+                                        // Obtener los datos asociados al RUT
+                                        var datosCliente = datosClientes[sugerenciaRut];
+                                        // Establecer los valores de RUT, Nombre, Ciudad y Comuna
+                                        rutInput.value = sugerenciaRut;
+                                        nombreInput.value = datosCliente.nombre_cliente;
+                                        ciudadInput.value = datosCliente.ciudad;
+                                        comunaInput.value = datosCliente.comuna;
+                                        // Limpiar las sugerencias
+                                        sugerenciasRutContainer.innerHTML = "";
+                                    });
+                                    sugerenciasRutContainer.appendChild(sugerenciaRutElemento);
+                                });
+                            }
+                        
+                            // Función para mostrar las sugerencias de Nombre en el contenedor
+                            function mostrarSugerenciasNombre(sugerenciasNombre) {
+                                sugerenciasNombreContainer.innerHTML = "";
+                                sugerenciasNombre.forEach(function (datosCliente) {
+                                    var sugerenciaNombreElemento = document.createElement("div");
+                                    sugerenciaNombreElemento.classList.add("sugerencia");
+                                    sugerenciaNombreElemento.textContent = datosCliente.nombre_cliente;
+                                    sugerenciaNombreElemento.addEventListener("click", function () {
+                                        // Establecer los valores de RUT, Nombre, Ciudad y Comuna
+                                        rutInput.value = datosCliente.rut_cliente;
+                                        nombreInput.value = datosCliente.nombre_cliente;
+                                        ciudadInput.value = datosCliente.ciudad;
+                                        comunaInput.value = datosCliente.comuna;
+                                        // Limpiar las sugerencias
+                                        sugerenciasNombreContainer.innerHTML = "";
+                                    });
+                                    sugerenciasNombreContainer.appendChild(sugerenciaNombreElemento);
+                                });
+                            }
+                        
+                            // Manejar clic fuera del campo para limpiar las sugerencias
+                            document.addEventListener("click", function (event) {
+                                if (event.target !== rutInput && event.target !== sugerenciasRutContainer && event.target !== nombreInput && event.target !== sugerenciasNombreContainer) {
+                                    sugerenciasRutContainer.innerHTML = "";
+                                    sugerenciasNombreContainer.innerHTML = "";
+                                }
+                            });
+                        </script>
+                    
+                    
+                        <!-- *************************** Fin Input Clientes ******************************** -->
+                        
+                        <!-- *************************** Input Transporte ******************************** -->
+                        <div class="input-field">
+                            <label for="nombreTransporte">Transporte</label>
+                            <input type="text" id="nombreTransporte" name="nombre_transporte" placeholder="Ingrese Transporte" autocomplete="off">
+                            <div id="sugerenciasTransporte"></div>
+                        </div>
+                        
+                        <script>
+                            // Objeto que contiene información asociada a los nombres de transporte
+                            var datosTransporte = {{ datos_transportes_json|safe }};
+                        
+                            // Obtener los elementos del DOM
+                            var nombreTransporteInput = document.getElementById("nombreTransporte");
+                            var sugerenciasTransporteContainer = document.getElementById("sugerenciasTransporte");
+                        
+                            // Manejar el evento de entrada en el campo de nombre de transporte
+                            nombreTransporteInput.addEventListener("input", function() {
+                                var nombreTransporte = nombreTransporteInput.value.trim();
+                        
+                                // Filtrar los nombres de transporte que coinciden con el valor de entrada
+                                var sugerenciasTransporte = Object.keys(datosTransporte).filter(function(transporte) {
+                                    return transporte.toLowerCase().startsWith(nombreTransporte.toLowerCase());
+                                });
+                        
+                                // Mostrar las sugerencias
+                                mostrarSugerenciasTransporte(sugerenciasTransporte);
+                            });
+                        
+                            // Función para mostrar las sugerencias de nombres de transporte en el contenedor
+                            function mostrarSugerenciasTransporte(sugerenciasTransporte) {
+                                sugerenciasTransporteContainer.innerHTML = "";
+                                sugerenciasTransporte.forEach(function(sugerenciaTransporte) {
+                                    var sugerenciaTransporteElemento = document.createElement("div");
+                                    sugerenciaTransporteElemento.classList.add("sugerencia");
+                                    sugerenciaTransporteElemento.textContent = sugerenciaTransporte;
+                                    sugerenciaTransporteElemento.addEventListener("click", function() {
+                                        // Asignar la sugerencia seleccionada al campo de entrada
+                                        nombreTransporteInput.value = sugerenciaTransporte;
+                                        // Limpiar las sugerencias
+                                        sugerenciasTransporteContainer.innerHTML = "";
+                                    });
+                                    sugerenciasTransporteContainer.appendChild(sugerenciaTransporteElemento);
+                                });
+                            }
+                        
+                            // Manejar clic fuera del campo para limpiar las sugerencias
+                            document.addEventListener("click", function(event) {
+                                if (event.target !== nombreTransporteInput && event.target !== sugerenciasTransporteContainer) {
+                                    sugerenciasTransporteContainer.innerHTML = "";
+                                }
+                            });
+                        </script>
+
+                        <!-- ****************************** Fin Input Transporte  ***************************** -->
+                        <div class="input-field">
+                            <label>Nº Ruta</label>
+                            <input name="n_ruta" type="text" placeholder="Nº de ruta">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="listaConductores">Conductor</label>
+                            <input name="nombre_conductor" type="text" id="nombreConductor" placeholder="Ingrese Conductor" autocomplete="off">
+                            <div id="sugerenciasConductor"></div>
+                        </div>
+                        
+                        <script>
+                            var datosConductores = {{ datosConductoresJSON|safe }};
+                        
+                            // Obtener el elemento de entrada y el contenedor de sugerencias
+                            var inputConductor = document.getElementById("nombreConductor");
+                            var sugerenciasConductorContainer = document.getElementById("sugerenciasConductor");
+                        
+                            // Número máximo de sugerencias visibles
+                            var maxSugerenciasVisibles = 3;
+                        
+                            // Manejar el evento de entrada en el campo de nombre de conductor
+                            inputConductor.addEventListener("input", function () {
+                                var valorInput = inputConductor.value.trim();
+                        
+                                // Filtrar los conductores que coinciden con el valor de entrada
+                                var sugerenciasConductor = datosConductores.filter(function (conductor) {
+                                    return conductor.toLowerCase().startsWith(valorInput.toLowerCase());
+                                });
+                        
+                                // Mostrar un número limitado de sugerencias
+                                mostrarSugerenciasConductor(sugerenciasConductor.slice(0, maxSugerenciasVisibles));
+                            });
+                        
+                            // Función para mostrar las sugerencias de nombres de conductor en el contenedor
+                            function mostrarSugerenciasConductor(sugerenciasConductor) {
+                                sugerenciasConductorContainer.innerHTML = "";
+                                sugerenciasConductor.forEach(function (sugerenciaConductor) {
+                                    var sugerenciaConductorElemento = document.createElement("div");
+                                    sugerenciaConductorElemento.classList.add("sugerencia");
+                                    sugerenciaConductorElemento.textContent = sugerenciaConductor;
+                                    sugerenciaConductorElemento.addEventListener("click", function () {
+                                        // Asignar la sugerencia seleccionada al campo de entrada
+                                        inputConductor.value = sugerenciaConductor;
+                                        // Limpiar las sugerencias
+                                        sugerenciasConductorContainer.innerHTML = "";
+                                    });
+                                    sugerenciasConductorContainer.appendChild(sugerenciaConductorElemento);
+                                });
+                            }
+                        
+                            // Manejar clic fuera del campo para limpiar las sugerencias
+                            document.addEventListener("click", function (event) {
+                                if (event.target !== inputConductor) {
+                                    sugerenciasConductorContainer.innerHTML = "";
+                                }
+                            });
+                        </script>
+                        
+                        <!-- ************************** Inicio Input Vendedor ************************** -->
+                        <div class="input-field">
+                            <label for="nombreVendedor">Vendedor</label>
+                            <input name="nombre_vendedor" type="text" id="nombreVendedor"  placeholder="Ingrese Vendedor" autocomplete="off">
+                            <div id="sugerenciasVendedor"></div>
+                        </div>
+
+                        
+                        <script>
+                            var datosVendedores = {{ datosVendedoresJSON|safe }};
+                        
+                            // Obtener el elemento de entrada y el contenedor de sugerencias
+                            var inputVendedor = document.getElementById("nombreVendedor");
+                            var sugerenciasVendedorContainer = document.getElementById("sugerenciasVendedor");
+                        
+                            // Número máximo de sugerencias visibles
+                            var maxSugerenciasVisibles = 3;
+                        
+                            // Manejar el evento de entrada en el campo de nombre de vendedor
+                            inputVendedor.addEventListener("input", function () {
+                                var valorInput = inputVendedor.value.trim();
+                        
+                                // Filtrar los vendedores que coinciden con el valor de entrada
+                                var sugerenciasVendedor = datosVendedores.filter(function (vendedor) {
+                                    return vendedor.toLowerCase().startsWith(valorInput.toLowerCase());
+                                });
+                        
+                                // Mostrar un número limitado de sugerencias
+                                mostrarSugerenciasVendedor(sugerenciasVendedor.slice(0, maxSugerenciasVisibles));
+                            });
+                        
+                            // Función para mostrar las sugerencias de nombres de vendedor en el contenedor
+                            function mostrarSugerenciasVendedor(sugerenciasVendedor) {
+                                sugerenciasVendedorContainer.innerHTML = "";
+                                sugerenciasVendedor.forEach(function (sugerenciaVendedor) {
+                                    var sugerenciaVendedorElemento = document.createElement("div");
+                                    sugerenciaVendedorElemento.classList.add("sugerencia");
+                                    sugerenciaVendedorElemento.textContent = sugerenciaVendedor;
+                                    sugerenciaVendedorElemento.addEventListener("click", function () {
+                                        // Asignar la sugerencia seleccionada al campo de entrada
+                                        inputVendedor.value = sugerenciaVendedor;
+                                        // Limpiar las sugerencias
+                                        sugerenciasVendedorContainer.innerHTML = "";
+                                    });
+                                    sugerenciasVendedorContainer.appendChild(sugerenciaVendedorElemento);
+                                });
+                            }
+                        
+                            // Manejar clic fuera del campo para limpiar las sugerencias
+                            document.addEventListener("click", function (event) {
+                                if (event.target !== inputVendedor) {
+                                    sugerenciasVendedorContainer.innerHTML = "";
+                                }
+                            });
+                        </script>                 
+
+                        <!-- ************************** Fin Input Vendedor ************************** -->
+                        
+                        <div class="input-field">
+                            <label>Factura</label>
+                            <input name="n_factura" type="number" placeholder="Nº de Factura" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Fecha Emision Factura</label>
+                            <input name="fecha_factura" type="date" placeholder="Fecha Factura" required>
+                        </div>    
+
+                        <div class="input-field">
+                            <label>Fecha Emisión Informe *</label>
+                            <input name="fecha_informe" type="date" id="fechaInforme"  placeholder="Fecha de informe" required>
+                        </div>
+                        
+                        <!-- ************************** Inicio Input Fecha Informe ************************** -->
+
+                        <script>
+                            // Obtener el elemento del campo de fecha
+                            var fechaInformeInput = document.getElementById("fechaInforme");
+                        
+                            // Obtener la fecha actual en el formato "YYYY-MM-DD"
+                            var fechaActual = new Date().toISOString().split('T')[0];
+                        
+                            // Establecer la fecha actual en el campo de fecha
+                            fechaInformeInput.value = fechaActual;
+                        </script>
+
+                        <!-- ************************** Fin Input Fecha Informe ************************** -->
+
+                        <!-- ************************** Inicio Input N° Informe ************************** -->
+
+                        <div class="input-field">
+                            <label>Nº Informe *</label>
+                            <input name="n_informe" type="number" id="numeroInforme" placeholder="Nº Informe" value="{{ proximo_numero_informe }}" readonly>
+                        </div>
+                        
+                        <script>
+                            // Obtener el elemento del campo de número de informe
+                            var numeroInformeInput = document.getElementById("numeroInforme");
+                        
+                            // Establecer el próximo número de informe en el campo
+                            numeroInformeInput.value = "{{ proximo_numero_informe }}";
+                        </script>
+                        
+                        <!-- ************************** Fin Input N° Informe ************************** -->
+                    </div>
+                </div>
+                                      
+
+                </div>
+
+                <section class="tabular--wrapper">
+                    <h3 class="title"><strong> Ingrese productos </strong></h3>
+                
+                    <div class="table-container">
+                        <table id="productosTable">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>código</th>
+                                    <th>Lote</th>
+                                    <th>Producto</th>
+                                    <th>Total KG Fact.</th>
+                                    <th>Total KG Dev.</th>
+                                    <th>Bodega Destino</th>
+                                    <th>Estado Producto</th>
+                                    <th>Proceso</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><input type="number" class="codigoProducto" name="codigoProducto_Row1"></td>
+                                    <td><input type="text" class="loteInput" name="loteInput_Row1"></td>
+                                    <td><input type="text" class="productoInput" name="productoInput_Row1"></td>
+                                    <td><input type="number" class="totalFacturado" name="totalFacturado_Row1"></td>
+                                    <td><input type="number" class="totalDevuelto" name="totalDevuelto_Row1"></td>
+                                    <td><input type="text" class="bodegaDestino" name="bodegaDestino_Row1"></td>
+                                    <td><input type="text" class="estadoProducto" name="estadoProducto_Row1"></td>
+                                    <td><input type="text" class="estadoProceso" name="estadoProceso_Row1"></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <script>
+                        // Obtener todos los elementos de entrada
+                        var codigoProductoInputs = document.querySelectorAll(".codigoProducto");
+                        var loteInputs = document.querySelectorAll(".loteInput");
+                        var productoInputs = document.querySelectorAll(".productoInput");
+                        var totalFacturadoInputs = document.querySelectorAll(".totalFacturado");
+                        var totalDevueltoInputs = document.querySelectorAll(".totalDevuelto");
+                        var bodegaDestinoInputs = document.querySelectorAll(".bodegaDestino");
+                        var estadoProductoInputs = document.querySelectorAll(".estadoProducto");
+                        var estadoProcesoInputs = document.querySelectorAll(".estadoProceso");
+                    
+                        // Obtener el campo del próximo número de informe
+                        var numeroInformeInput = document.getElementById("numeroInforme");
+                    
+                        // Obtener datos de productos desde el contexto de Django
+                        var datosProductos = {{ datos_productos_json|safe }};
+                    
+                        // Manejar el evento de entrada en el campo de código de producto para cada fila
+                        codigoProductoInputs.forEach(function (codigoProductoInput, index) {
+                            codigoProductoInput.addEventListener("input", function () {
+                                // Obtener el valor del código de producto
+                                var codigoProducto = codigoProductoInput.value.trim();
+                    
+                                // Verificar si hay datos asociados al código de producto
+                                if (datosProductos[codigoProducto]) {
+                                    // Actualizar los campos con los datos asociados
+                                    loteInputs[index].value = datosProductos[codigoProducto].lote;
+                                    productoInputs[index].value = datosProductos[codigoProducto].producto;
+                    
+                                    // Enfocar automáticamente el siguiente campo (Total KG Fact.)
+                                    totalFacturadoInputs[index].focus();
+                                } else {
+                                    // Limpiar los campos si no hay datos asociados
+                                    loteInputs[index].value = "";
+                                    productoInputs[index].value = "";
+                                }
+                            });
+                        });
+                    
+                        
+                    </script>            
+                    
+                </section>   
+
+            </div>
+            <div class="botones">
+
+                <input type="submit" value="Emitir Informe" />
+
+            </div>
+        </form>
+    </section>
+
+</body>
+</html>

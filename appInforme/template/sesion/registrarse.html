@@ -1,0 +1,38 @@
+{% load static %}
+appInicio
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Crear Cuenta</title>
+    <link rel="stylesheet" href="{% static 'appInforme/css/css-sesion/css-registrarse.css' %}" />
+  </head>
+  <body>
+    <section class="wrapper">
+      <div class="form signup">
+        <header>Crear Cuenta</header>
+        <form action="#">
+          <input type="text" name="username" placeholder="Nombre" required />
+
+          <select id="grupoUsuario" name="grupoUsuario" required>
+            <option value="Seleccione">Grupo de usuario</option>
+            <option value="calidad">Calidad</option>
+            <option value="seleccion">Seleccion</option>
+            <option value="despacho">Despacho</option>
+            <option value="comercial">Comercial</option>
+            <option value="master">Master</option>
+            
+        </select>
+          
+          <input type="password" name="password" placeholder="Contraseña" required />
+          
+          <input class="btnsend" type="submit" value="Crear Cuenta" />
+        </form>
+      </div>
+      
+    </section>
+  </body>
+</html>

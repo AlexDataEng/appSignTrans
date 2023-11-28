@@ -1,0 +1,178 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'appInforme/css/css-firmar-informe.css' %}">
+    <title>Firmar informe</title>
+</head>
+<body>
+
+    <header class="encabezado">
+        <div class="menu">
+            
+            <div class="logo">
+                <img src="{% static 'appInforme/img/logo_transparent.png' %}" alt="">
+            </div>
+
+            <nav>
+                <ul>
+                    <li>
+                        <a href={% url 'inicio' %}  >Inicio</a>
+                    </li>
+                    <li>
+                        <a href={% url 'inicioInforme' %} class="active">Informes</a>
+                    </li>
+                    <li>
+                        <a href="">Usuarios</a>
+                    </li>
+                    <li>
+                        <a href={% url 'login' %}>Iniciar Sesion </a>
+                    </li>
+                    <li>
+                        <span>|</span>
+                    </li>
+                    <li>
+                        <a href="">@Usuario </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    
+    <section class="container">
+        
+        <header>Firmar Informe</header>
+
+        <form action="">
+            <div class="from first">
+
+                <div class="details personal">
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>N° De Informe*</label>
+                            <input type="number" id="numeroInforme" placeholder="Ingrese el n° de informe">
+                            <div id="sugerenciasInforme"></div>
+                        </div>
+                
+                        <div class="input-field">
+                            <label>N° De Factura</label>
+                            <input type="number" id="numeroFactura" placeholder="Numero Informe">
+                        </div>
+                
+                        <div class="input-field">
+                            <label>Cliente</label>
+                            <input type="text" id="cliente" placeholder="Nombre Cliente">
+                        </div>
+                    </div>
+                </div>
+                
+                <script>
+                    // Lista de números de informe con datos ficticios
+                    var informes = [
+                        { numero: 29301, factura: 67890, cliente: 'ClienteA' },
+                        { numero: 67890, factura: 54321, cliente: 'ClienteB' },
+                        { numero: 98765, factura: 12345, cliente: 'ClienteC' },
+                        { numero: 54321, factura: 98765, cliente: 'ClienteD' }
+                    ];
+                
+                    // Obtener los elementos de entrada y los contenedores de sugerencias
+                    var inputInforme = document.getElementById("numeroInforme");
+                    var sugerenciasInformeContainer = document.getElementById("sugerenciasInforme");
+                    var inputFactura = document.getElementById("numeroFactura");
+                    var inputCliente = document.getElementById("cliente");
+                
+                    // Números máximos de sugerencias visibles
+                    var maxSugerenciasVisibles = 3;
+                
+                    // Manejar el evento de entrada en el campo de número de informe
+                    inputInforme.addEventListener("input", function() {
+                        var valorInput = inputInforme.value.trim();
+                
+                        // Filtrar los informes que coinciden con el valor de entrada
+                        var sugerenciasInforme = informes.filter(function(informe) {
+                            return informe.numero.toString().startsWith(valorInput);
+                        });
+                
+                        // Mostrar un número limitado de sugerencias
+                        mostrarSugerenciasInforme(sugerenciasInforme.slice(0, maxSugerenciasVisibles));
+                    });
+                
+                    // Función para mostrar las sugerencias de números de informe en el contenedor
+                    function mostrarSugerenciasInforme(sugerenciasInforme) {
+                        sugerenciasInformeContainer.innerHTML = "";
+                        sugerenciasInforme.forEach(function(sugerenciaInforme) {
+                            var sugerenciaInformeElemento = document.createElement("div");
+                            sugerenciaInformeElemento.classList.add("sugerencia");
+                            sugerenciaInformeElemento.textContent = sugerenciaInforme.numero;
+                            sugerenciaInformeElemento.addEventListener("click", function() {
+                                // Asignar la sugerencia seleccionada a los campos de entrada
+                                inputInforme.value = sugerenciaInforme.numero;
+                                inputFactura.value = sugerenciaInforme.factura;
+                                inputCliente.value = sugerenciaInforme.cliente;
+                                // Limpiar las sugerencias
+                                sugerenciasInformeContainer.innerHTML = "";
+                            });
+                            sugerenciasInformeContainer.appendChild(sugerenciaInformeElemento);
+                        });
+                    }
+                
+                    // Manejar clic fuera del campo para limpiar las sugerencias
+                    document.addEventListener("click", function(event) {
+                        if (event.target !== inputInforme) {
+                            sugerenciasInformeContainer.innerHTML = "";
+                        }
+                    });
+                </script>
+
+                
+                
+                
+                <div class="botones">
+
+                    <div class="nextBtn btn-green">
+                        <a href="#">Firmar</a>
+                    </div>
+
+                    <div class="nextBtn btn-red">
+                        <a href={% url 'inicioInforme' %}>Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <div class="pie-pagina">
+        <div class="pie">
+
+            <nav class="nav-right">
+                <ul class="ul-pie">
+                    <li>
+                        <a href="">©Copyright SignAppFast
+                        </a>
+                        <span>|</span>
+                        <a href="">Documentación SignAppFast
+                        </a>
+                    </li>
+                   
+                </ul>
+            </nav>
+
+            <nav class="nav-izq">
+                <ul class="ul-pie">
+                
+                    <li>
+                        <a href="">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    
+
+</body>
+</html>

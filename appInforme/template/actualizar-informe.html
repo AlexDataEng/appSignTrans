@@ -1,0 +1,202 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'appInforme/css/css-actualizar-informe.css' %}">
+    <title>Actualizar Informe</title>
+</head>
+<body>
+
+    <header class="encabezado">
+        <div class="menu">
+            
+            <div class="logo">
+                <img src="" alt="">
+            </div>
+
+            <nav>
+                <ul>
+                    <li>
+                        <a href={% url 'inicio' %}  >Inicio</a>
+                    </li>
+                    <li>
+                        <a href={% url 'inicioInforme' %} class="active">Informes</a>
+                    </li>
+                    <li>
+                        <a href="">Usuarios</a>
+                    </li>
+                    <li>
+                        <a href={% url 'login' %}>Iniciar Sesion </a>
+                    </li>
+                    <li>
+                        <span>|</span>
+                    </li>
+                    <li>
+                        <a href="">@Usuario </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    
+        
+    <section class="container">
+        
+        <header>Actualizar valores del Informe</header>
+
+        <form action="">
+            <div class="from first">
+
+                <div class="details personal">
+                    
+
+                    <div class="fields">
+                        
+                        <!--
+                        <div class="input-field">
+                            <label for="listInformes">N° De Informe</label>
+                            
+                            <select name="listInformes" id="listInformes">
+                                <option value="30295">30295</option>
+                                <option value="30296">40296</option>
+                                <option value="30297">20297</option>
+                                <option value="30298">10298</option>
+                                <option value="30299">30299</option>
+                            </select>
+                        </div>
+                        -->
+
+
+                        <div class="input-field">
+                            <label for="numeroInforme">N° De Informe</label>
+                            <input type="number" id="numeroInforme" name="numeroInforme" autocomplete="off">
+                            <div id="sugerenciasInforme"></div>
+                        </div>
+                        
+                        <script>
+                            // Lista de números de informe (puedes cargarla desde una fuente externa si es necesario)
+                            var informes = [586232, 586323, 586334, 586323, 586387, 586363];
+                        
+                            // Obtener el elemento de entrada y el contenedor de sugerencias
+                            var inputInforme = document.getElementById("numeroInforme");
+                            var sugerenciasInformeContainer = document.getElementById("sugerenciasInforme");
+                        
+                            // Número máximo de sugerencias visibles
+                            var maxSugerenciasVisibles = 3;
+                        
+                            // Manejar el evento de entrada en el campo de número de informe
+                            inputInforme.addEventListener("input", function() {
+                                var valorInput = inputInforme.value.trim();
+                        
+                                // Filtrar los informes que coinciden con el valor de entrada
+                                var sugerenciasInforme = informes.filter(function(informe) {
+                                    return informe.toString().startsWith(valorInput);
+                                });
+                        
+                                // Mostrar un número limitado de sugerencias
+                                mostrarSugerenciasInforme(sugerenciasInforme.slice(0, maxSugerenciasVisibles));
+                            });
+                        
+                            // Función para mostrar las sugerencias de números de informe en el contenedor
+                            function mostrarSugerenciasInforme(sugerenciasInforme) {
+                                sugerenciasInformeContainer.innerHTML = "";
+                                sugerenciasInforme.forEach(function(sugerenciaInforme) {
+                                    var sugerenciaInformeElemento = document.createElement("div");
+                                    sugerenciaInformeElemento.classList.add("sugerencia");
+                                    sugerenciaInformeElemento.textContent = sugerenciaInforme;
+                                    sugerenciaInformeElemento.addEventListener("click", function() {
+                                        // Asignar la sugerencia seleccionada al campo de entrada
+                                        inputInforme.value = sugerenciaInforme;
+                                        // Limpiar las sugerencias
+                                        sugerenciasInformeContainer.innerHTML = "";
+                                    });
+                                    sugerenciasInformeContainer.appendChild(sugerenciaInformeElemento);
+                                });
+                            }
+                        
+                            // Manejar clic fuera del campo para limpiar las sugerencias
+                            document.addEventListener("click", function(event) {
+                                if (event.target !== inputInforme) {
+                                    sugerenciasInformeContainer.innerHTML = "";
+                                }
+                            });
+                        </script>
+
+
+                        <div class="input-field">
+                            <label>Cliente Recepciona</label>
+                            <input type="text" placeholder="¿Cliente recepciona?">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Bodega Destino</label>
+                            <input type="text" placeholder="Actualize bodega de destino">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Proceso</label>
+                            <input type="text" placeholder="Actualize el proceso">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Observación</label>
+                            <input type="text" placeholder="Actualize la observación">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                
+                
+                
+                <div class="botones">
+
+                    <div class="nextBtn btn-green">
+                        <a href="#">Actualizar</a>
+                    </div>
+                    
+                    <div class="nextBtn btn-red">
+                        <a href={% url 'inicioInforme' %}>Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <div class="pie-pagina">
+        <div class="pie">
+
+            <nav class="nav-right">
+                <ul class="ul-pie">
+                    <li>
+                        <a href="">©Copyright SignAppFast
+                        </a>
+                        <span>|</span>
+                        </a>
+                        <a href="">Documentación SignAppFast
+                        </a>
+                    </li>
+                   
+                </ul>
+            </nav>
+
+            <nav class="nav-izq">
+                <ul class="ul-pie">
+                
+                    <li>
+                        <a href="">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    
+
+</body>
+</html>
