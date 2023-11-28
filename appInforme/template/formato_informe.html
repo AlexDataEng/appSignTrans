@@ -3,11 +3,11 @@
 <tbody>
 <tr style="height: 20px;">
 <td style="width: 50%; height: 20px;"><strong>&nbsp;Folio:</strong></td>
-<td style="width: 50%; height: 20px;">&nbsp;{{FOLIO}}</td>
+<td style="width: 50%; height: 20px;">&nbsp;{{folio_informe}}</td>
 </tr>
 <tr style="height: 20px;">
 <td style="width: 50%; height: 20px;"><strong>&nbsp;Fecha Informe:</strong></td>
-<td style="width: 50%; height: 20px;">{{FECHA}}</td>
+<td style="width: 50%; height: 20px;">{{input_fecha_informe}}</td>
 </tr>
 <tr style="height: 20px;">
 <td style="width: 50%; height: 20px;"><strong>&nbsp;N&deg; NC :</strong></td>
@@ -20,15 +20,15 @@
 <tbody>
 <tr style="height: 29px;">
 <td style="width: 25%; height: 29px;"><strong>&nbsp;Cliente:</strong></td>
-<td style="width: 25%; height: 29px;">&nbsp;{{cliente}}</td>
+<td style="width: 25%; height: 29px;">&nbsp;{{nombre_cliente}}</td>
 <td style="width: 25%; height: 29px;"><strong>&nbsp;Rut:&nbsp;</strong></td>
-<td style="width: 25%; height: 29px;">&nbsp;{{RUT}}</td>
+<td style="width: 25%; height: 29px;">&nbsp;{{rut_cliente}}</td>
 </tr>
 <tr style="height: 31px;">
 <td style="width: 25%; height: 31px;"><strong>&nbsp;Ciudad:</strong></td>
-<td style="width: 25%; height: 31px;">&nbsp;{{CIUDAD}}</td>
+<td style="width: 25%; height: 31px;">&nbsp;{{ciudad}}</td>
 <td style="width: 25%; height: 31px;"><strong>&nbsp;Comuna:</strong></td>
-<td style="width: 25%; height: 31px;">&nbsp;{{COMUNA}}</td>
+<td style="width: 25%; height: 31px;">&nbsp;{{comuna}}</td>
 </tr>
 </tbody>
 </table>
@@ -37,15 +37,15 @@
 <tbody>
 <tr style="height: 29px;">
 <td style="width: 25%; height: 29px;"><strong>&nbsp;Transporte</strong>:</td>
-<td style="width: 25%; height: 29px;">{{ TRANSPORTE}}</td>
+<td style="width: 25%; height: 29px;">{{ nombre_transporte}}</td>
 <td style="width: 25%; height: 29px;"><strong>&nbsp;NC (Si/No):</strong></td>
-<td style="width: 25%; height: 29px;">{{REQ_NC}}</td>
+<td style="width: 25%; height: 29px;">{{requiere_NC}}</td>
 </tr>
 <tr style="height: 26px;">
 <td style="width: 25%; height: 26px;"><strong>&nbsp;Factura:</strong>&nbsp;</td>
-<td style="width: 25%; height: 26px;">{{FACTURA}}</td>
+<td style="width: 25%; height: 26px;">{{n_factura}}</td>
 <td style="width: 25%; height: 26px;"><strong>&nbsp;Fecha Factura:</strong></td>
-<td style="width: 25%; height: 26px;">&nbsp;{{FECHA_FACT}}</td>
+<td style="width: 25%; height: 26px;">&nbsp;{{input_fecha_factura}}</td>
 </tr>
 </tbody>
 </table>
@@ -53,15 +53,15 @@
 <tbody>
 <tr style="height: 30px;">
 <td style="width: 25%; height: 30px;"><strong>&nbsp;Conductor</strong>:</td>
-<td style="width: 25%; height: 30px;">{{CONDUCTOR}}</td>
+<td style="width: 25%; height: 30px;">{{input_nombre_conductor}}</td>
 <td style="width: 25%; height: 30px;"><strong>&nbsp;N&deg; O Retiro:</strong></td>
-<td style="width: 25%; height: 30px;">{{Orden_R}}</td>
+<td style="width: 25%; height: 30px;">{{orden_de_retiro}}</td>
 </tr>
 <tr style="height: 27px;">
 <td style="width: 25%; height: 27px;"><strong>&nbsp;N&deg; Hoja de Ruta:</strong>&nbsp;</td>
-<td style="width: 25%; height: 27px;">{{N_RUTA}}</td>
+<td style="width: 25%; height: 27px;">{{input_n_ruta}}</td>
 <td style="width: 25%; height: 27px;"><strong>&nbsp;Vendedor:</strong>&nbsp;</td>
-<td style="width: 25%; height: 27px;">{{VENDEDOR}}</td>
+<td style="width: 25%; height: 27px;">{{input_nombre_vendedor}}</td>
 </tr>
 </tbody>
 </table>
@@ -72,7 +72,7 @@
 <td style="width: 22.0668%; height: 22px;">
 <p><strong>&nbsp;Tipo&nbsp; &nbsp;devoluci&oacute;n:</strong>&nbsp;</p>
 </td>
-<td style="width: 22.5394%; height: 22px;">{{TIPO}}</td>
+<td style="width: 22.5394%; height: 22px;">{{input_tipo_devolucion}}</td>
 <td style="width: 28.1665%; height: 22px;"><strong>&nbsp;Motivo de retiro:</strong>&nbsp;</td>
 <td style="width: 52.6226%; height: 22px;">{{MOTIVO}}</td>
 </tr>
@@ -88,7 +88,7 @@
 <tbody>
 <tr style="height: 40px;">
 <td style="width: 18.5496%; height: 40px;"><strong>&nbsp;Observaci&oacute;n:</strong>&nbsp;</td>
-<td style="width: 81.4504%; height: 40px;"><strong>{{OBSERVACION}}</strong></td>
+<td style="width: 81.4504%; height: 40px;"><strong>{{input_observacion}}</strong></td>
 </tr>
 </tbody>
 </table>
@@ -111,14 +111,14 @@
 <table style="border-collapse: collapse; width: 100%;" border="1">
 <tbody>
 <tr>
-<td style="width: 14%; height: 30PX;">&nbsp;{{PRODUCTO}}</td>
-<td style="width: 14%; height: 30PX;">&nbsp; {{LOTE}}</td>
-<td style="width: 14%; height: 30PX;">&nbsp;{{PRODUCTO}}</td>
-<td style="width: 14%; height: 30PX;">&nbsp;{{Total_KG_Fact}}</td>
-<td style="width: 14%; height: 30PX;">&nbsp;{{Total_KG_Dev}}</td>
-<td style="width: 14%; height: 30PX;">&nbsp;{{Bodega_Destino}}</td>
+<td style="width: 14%; height: 30PX;">&nbsp;{{codigoProducto_Row1}}</td>
+<td style="width: 14%; height: 30PX;">&nbsp; {{loteInput_Row1}}</td>
+<td style="width: 14%; height: 30PX;">&nbsp;{{productoInput_Row1}}</td>
+<td style="width: 14%; height: 30PX;">&nbsp;{{totalFacturado_Row1}}</td>
+<td style="width: 14%; height: 30PX;">&nbsp;{{totalDevuelto_Row1}}</td>
+<td style="width: 14%; height: 30PX;">&nbsp;{{bodegaDestino_Row1}}</td>
 <td style="width: 14%; height: 30PX;">&nbsp;{{Estado_Producto}}</td>
-<td style="width: 14%; height: 30PX;">&nbsp;{{Proceso}}</td>
+<td style="width: 14%; height: 30PX;">&nbsp;{{estadoProducto_Row1}}</td>
 </tr>
 
 <tr>
@@ -200,6 +200,6 @@
 </table>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>{{FIRMA_CALIDAD}}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{{FIRMA_CALIDAD}}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{{FIRMA_CALIDAD}}</p>
+<p>{{nombre_usuario_calidad}}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{{nombre_usuario_seleccion}}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{{nombre_usuario_despacho}}</p>
 <p>Firma Monito de Calidad&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Firma Jefe Seleci&oacute;n&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Firma Jefe Despacho</p>
 <p>&nbsp;</p>
